@@ -9,6 +9,9 @@ TEMPLATE = app
 CONFIG += c++11
 
 include(../share/share.pri)
+#3rdparty
+include(../3rdparty/qmarkdowntextedit/qmarkdowntextedit.pri)
+include(../3rdparty/hoedown.pri)
 
 SOURCES += \
         main.cpp \        
@@ -21,3 +24,14 @@ HEADERS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+DISTFILES += \
+    android/AndroidManifest.xml \
+    android/gradle/wrapper/gradle-wrapper.jar \
+    android/gradlew \
+    android/res/values/libs.xml \
+    android/build.gradle \
+    android/gradle/wrapper/gradle-wrapper.properties \
+    android/gradlew.bat
+
+ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
