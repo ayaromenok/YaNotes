@@ -9,9 +9,6 @@ TEMPLATE = app
 CONFIG += c++11
 
 include(../share/share.pri)
-#3rdparty
-include(../3rdparty/qmarkdowntextedit/qmarkdowntextedit.pri)
-include(../3rdparty/hoedown.pri)
 
 SOURCES += \
         main.cpp \        
