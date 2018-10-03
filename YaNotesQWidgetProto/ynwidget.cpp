@@ -3,7 +3,7 @@
 
 #include "ynwidget.h"
 #include "../share/share.h"
-
+#include "../share/mdobject.h"
 #include <QLabel>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
@@ -12,10 +12,21 @@
 #include <QToolButton>
 #include <QComboBox>
 #include <QStatusBar>
+#include "../3rdparty/qmarkdowntextedit/qmarkdowntextedit.h"
 
 YNWidget::YNWidget(QWidget *parent) : QWidget(parent)
 {
     YN_TIMESTAMP();
+    _md = new MDObject(this);
+    _mdTextEdit = new QMarkdownTextEdit();
+    //! \todo create geometry scale engine
+    // _mdTextEdit->setFixedHeight(200); // - don't work correctly on Android
+    _textBrowser = new QTextBrowser();
+    connect (_mdTextEdit, SIGNAL(textChanged()),
+             this, SLOT(updateMD()));
+    _mdTextEdit->appendPlainText("### Hello\n - from YaNotes\n - from Me\n");
+    _mdTextEdit->appendPlainText("### Heading again\n ");
+
     setWindowTitle(tr("YaNotes"));
     setVertUIProto();
 }
@@ -23,16 +34,25 @@ YNWidget::YNWidget(QWidget *parent) : QWidget(parent)
 YNWidget::~YNWidget()
 {
     YN_TIMESTAMP();
+    delete _md;
+}
+
+void
+YNWidget::updateMD()
+{
+    YN_TIMESTAMP();
+    QString md = _mdTextEdit->toPlainText();
+    _textBrowser->setHtml(_md->toHtml(md));
 }
 
 void
 YNWidget::setVertUIProto()
 {
+    YN_TIMESTAMP();
     setFixedSize(480,800);
 
     _lbOne = new QLabel("label #1");
     _lbTwo = new QLabel("label #2");
-    _textBrowser = new QTextBrowser();
 
     _tbOne = new QToolButton();
     _tbTwo = new QToolButton();
@@ -59,6 +79,7 @@ YNWidget::setVertUIProto()
 
     _ltVertical->addWidget(_tbarTop);
     _ltVertical->addWidget(_textBrowser);
+    _ltVertical->addWidget(_mdTextEdit);
     _ltVertical->addWidget(_sbOne);
     setLayout(_ltVertical);
 }

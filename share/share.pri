@@ -1,6 +1,8 @@
 HEADERS += \
-    $$PWD/share.h
-SOURCES += 
+    $$PWD/share.h \
+    $$PWD/mdobject.h
+SOURCES += \ 
+    $$PWD/mdobject.cpp
 
 #3rdparty
 include(../3rdparty/qmarkdowntextedit/qmarkdowntextedit.pri)

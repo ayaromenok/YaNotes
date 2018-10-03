@@ -13,6 +13,8 @@ class QToolBar;
 class QToolButton;
 class QComboBox;
 class QStatusBar;
+class QMarkdownTextEdit;
+class MDObject;
 
 class YNWidget : public QWidget
 {
@@ -23,18 +25,24 @@ public:
 signals:
 
 public slots:
+private slots:
+    void updateMD();
 
 private:
-    void            setVertUIProto();
-    QVBoxLayout*    _ltVertical;
-    QLabel*         _lbOne;
-    QLabel*         _lbTwo;
-    QTextBrowser*   _textBrowser;
-    QToolBar*       _tbarTop;
-    QToolButton*    _tbOne;
-    QToolButton*    _tbTwo;
-    QComboBox*      _cbOne;
-    QStatusBar*     _sbOne;
+    //MD
+    MDObject*                   _md;
+    //UI proto
+    void                        setVertUIProto();
+    QVBoxLayout*                _ltVertical;
+    QLabel*                     _lbOne;
+    QLabel*                     _lbTwo;
+    QTextBrowser*               _textBrowser;
+    QToolBar*                   _tbarTop;
+    QToolButton*                _tbOne;
+    QToolButton*                _tbTwo;
+    QComboBox*                  _cbOne;
+    QStatusBar*                 _sbOne;
+    QMarkdownTextEdit*          _mdTextEdit;
 };
 
 #endif // YNWIDGET_H
