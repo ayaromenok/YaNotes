@@ -41,10 +41,10 @@ ios {
     #LIBS += -F$${IOSPATH}
     #LIBS += -framework someframevork
     simulator {
-        message("* OpenCV settings for iOS Simulator")
+        message("* Using settings for iOS Simulator")
     }
     device{
-        message("* OpenCV settings for iOS")
+        message("* Using settings for iOS")
     }
 }
 
