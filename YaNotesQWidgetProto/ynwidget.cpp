@@ -20,13 +20,11 @@ YNWidget::YNWidget(QWidget *parent) : QWidget(parent)
     _md = new MDObject(this);
     _mdTextEdit = new QMarkdownTextEdit();
     //! \todo create geometry scale engine
-    // _mdTextEdit->setFixedHeight(200); // - don't work correctly on Android
+    // _mdTextEdit->setFixedHeight(200); // - don't scale correctly on Android
     _textBrowser = new QTextBrowser();
     connect (_mdTextEdit, SIGNAL(textChanged()),
              this, SLOT(updateMD()));
-    _mdTextEdit->appendPlainText("### Hello\n - from YaNotes\n - from Me\n");
-    _mdTextEdit->appendPlainText("### Heading again\n ");
-
+    setTestMDText();
     setWindowTitle(tr("YaNotes"));
     setVertUIProto();
 }
@@ -82,4 +80,21 @@ YNWidget::setVertUIProto()
     _ltVertical->addWidget(_mdTextEdit);
     _ltVertical->addWidget(_sbOne);
     setLayout(_ltVertical);
+}
+
+void
+YNWidget::setTestMDText()
+{
+    QString strTestToC("### Hello\n - from YaNotes\n - from Me\n\n");
+
+    strTestToC.append("#### TOC\n\n");
+    strTestToC.append(" 1. [Heading 1](#heading1)\n\n");
+    strTestToC.append(" 2. [Heading 2](#heading2)\n\n");
+    strTestToC.append(" 3. [Heading 3](#heading3)\n\n");
+    strTestToC.append("### Heading 1<a name = \"heading1\"></a>\n ");
+    strTestToC.append("\n\n1\n\n2\n\n3\n\n4\n\n5\n\n");
+    strTestToC.append("### Heading 2<a name = \"heading2\"></a>\n ");
+    strTestToC.append("\n\n1\n\n2\n\n3\n\n4\n\n5\n\n");
+    strTestToC.append("### Heading 3<a name = \"heading3\"></a>\n ");
+    _mdTextEdit->appendPlainText(strTestToC);
 }

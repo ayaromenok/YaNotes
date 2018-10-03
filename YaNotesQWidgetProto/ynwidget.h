@@ -33,6 +33,7 @@ private:
     MDObject*                   _md;
     //UI proto
     void                        setVertUIProto();
+    void                        setTestMDText();
     QVBoxLayout*                _ltVertical;
     QLabel*                     _lbOne;
     QLabel*                     _lbTwo;
