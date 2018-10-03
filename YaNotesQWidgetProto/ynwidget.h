@@ -5,6 +5,14 @@
 #define YNWIDGET_H
 
 #include <QWidget>
+class QVBoxLayout;
+class QHBoxLayout;
+class QLabel;
+class QTextBrowser;
+class QToolBar;
+class QToolButton;
+class QComboBox;
+class QStatusBar;
 
 class YNWidget : public QWidget
 {
@@ -16,6 +24,17 @@ signals:
 
 public slots:
 
+private:
+    void            setVertUIProto();
+    QVBoxLayout*    _ltVertical;
+    QLabel*         _lbOne;
+    QLabel*         _lbTwo;
+    QTextBrowser*   _textBrowser;
+    QToolBar*       _tbarTop;
+    QToolButton*    _tbOne;
+    QToolButton*    _tbTwo;
+    QComboBox*      _cbOne;
+    QStatusBar*     _sbOne;
 };
 
 #endif // YNWIDGET_H
