@@ -1,6 +1,7 @@
 # YaNotes
 Yet Another Notes - information manager and storage system
 
+
 ## Motivation:
 - [MyTetra](https://github.com/xintrea/mytetra_dev) is a great tool for store and manage information. Also it have some issues, like a large amount of legacy code, mixed language comments and no mobile client (well, you can build MyTetra for Andoid, but it will be unusable due to UI issues and sync via git will not work on non-rooted devices).
 - [QOwnNotes](https://gitgub.com/pbek/QOwnNotes) - perfect editor for markdown. While some issues with mobile build and git too.  
@@ -20,3 +21,7 @@ Yet Another Notes - information manager and storage system
  - [QMarkDownTextEdit](https://github.com/pbek/qmarkdowntextedit) can be used as MD editor
  - **QTextBrowser** can be used to view MD in HTML format for QtWidget/Desktop
  - **QtQuick.Text** can be used to view MD in HTML format for QtQuick/Mobile;
+
+### Repository
+repo use git-submodules, so
+`git clone --recurse-submodules git@github.com:ayaromenok/YaNotes.git`
