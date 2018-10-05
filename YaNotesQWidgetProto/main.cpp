@@ -11,6 +11,8 @@ int main(int argc, char *argv[])
     YN_TIMESTAMP();
 
     QApplication a(argc, argv);
+    QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+
     YNWidget yn;
     yn.show();
 

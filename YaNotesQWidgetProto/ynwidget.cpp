@@ -12,6 +12,13 @@
 #include <QToolButton>
 #include <QComboBox>
 #include <QStatusBar>
+
+#include <QScrollBar>
+#include <QScrollArea>
+#include <QAbstractScrollArea>
+#include <QAbstractSlider>
+#include <QList>
+
 #include "../3rdparty/qmarkdowntextedit/qmarkdowntextedit.h"
 
 YNWidget::YNWidget(QWidget *parent) : QWidget(parent)
@@ -22,11 +29,14 @@ YNWidget::YNWidget(QWidget *parent) : QWidget(parent)
     //! \todo create geometry scale engine
     // _mdTextEdit->setFixedHeight(200); // - don't scale correctly on Android
     _textBrowser = new QTextBrowser();
+
     connect (_mdTextEdit, SIGNAL(textChanged()),
              this, SLOT(updateMD()));
+
     setTestMDText();
     setWindowTitle(tr("YaNotes"));
     setVertUIProto();
+    setAndroidScrollBarDirtyFix();
 }
 
 YNWidget::~YNWidget()
@@ -85,6 +95,7 @@ YNWidget::setVertUIProto()
 void
 YNWidget::setTestMDText()
 {
+    YN_TIMESTAMP();
     QString strTestToC("### Hello\n - from YaNotes\n - from Me\n\n");
 
     strTestToC.append("#### TOC\n\n");
@@ -97,4 +108,18 @@ YNWidget::setTestMDText()
     strTestToC.append("\n\n1\n\n2\n\n3\n\n4\n\n5\n\n");
     strTestToC.append("### Heading 3<a name = \"heading3\"></a>\n ");
     _mdTextEdit->appendPlainText(strTestToC);
+}
+
+void
+YNWidget::setAndroidScrollBarDirtyFix()
+{
+    YN_TIMESTAMP();
+    QScrollBar* _sbOne;
+    QScrollBar* _sbTwo;
+    _sbOne = _textBrowser->verticalScrollBar();
+    _sbOne->setMaximumWidth(30);
+    _sbTwo = _mdTextEdit->verticalScrollBar();
+    _sbTwo->setMaximumWidth(30);
+    _textBrowser->setLayoutDirection(Qt::RightToLeft);
+    _mdTextEdit->setLayoutDirection(Qt::RightToLeft);
 }

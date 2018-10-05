@@ -34,6 +34,7 @@ private:
     //UI proto
     void                        setVertUIProto();
     void                        setTestMDText();
+    void                        setAndroidScrollBarDirtyFix();
     QVBoxLayout*                _ltVertical;
     QLabel*                     _lbOne;
     QLabel*                     _lbTwo;
@@ -43,7 +44,7 @@ private:
     QToolButton*                _tbTwo;
     QComboBox*                  _cbOne;
     QStatusBar*                 _sbOne;
-    QMarkdownTextEdit*          _mdTextEdit;
+    QMarkdownTextEdit*          _mdTextEdit;    
 };
 
 #endif // YNWIDGET_H
